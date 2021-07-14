@@ -3,11 +3,10 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
 (async () => {
-   
+    const url = "mongodb+srv://admin:Yzjt3CPCJnDAIp5F@cluster0.zm4uz.mongodb.net/ocean_DB?retryWrites=true&w=majority";
     const dbName = "ocean_DB";
 
-    const url = "mongodb+srv://admin:Yzjt3CPCJnDAIp5F@cluster0.zm4uz.mongodb.net/ocean_DB?retryWrites=true&w=majority";
-
+    
     console.info("Conectando ao banco de dados...");
 
     const client = await MongoClient.connect(url, { useUnifiedTopology: true });
