@@ -3,20 +3,18 @@ const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
 (async () => {
-    const host = process.env.DB_HOST;
-    const user = process.env.DB_USER;
-    const pass = process.env.DB_PASS;
-    const dbName = process.env.DB_NAME;
+   
+    const dbName = "ocean_DB";
 
-    const url = `mongodb+srv://${user}:${pass}@${host}/${dbName}?retryWrites=true&w=majority`;
+    const url = `mongodb+srv://admin:Yzjt3CPCJnDAIp5F@cluster0.zm4uz.mongodb.net/ocean_DB?retryWrites=true&w=majority`;
 
     console.info("Conectando ao banco de dados...");
 
-    //const client = await MongoClient.connect(url, { useUnifiedTopology: true });
+    const client = await MongoClient.connect(url, { useUnifiedTopology: true });
 
     console.info("MongoDB conectado com sucesso!");
 
-   // const db = client.db(dbName);
+    const db = client.db(dbName);
 
     const app = express();
 
@@ -48,8 +46,7 @@ const { MongoClient, ObjectId } = require("mongodb");
     const lista = ["Senhor dos Anéis", "Harry Potter"];
     //              0                   1
 
-    //const filmes = db.collection("filmes");
-        const filmes = undefined
+    const filmes = db.collection("filmes");      
     
     // [GET] - Read All
     app.get("/filmes", async (req, res) => {
